@@ -31,3 +31,15 @@ function operate(operator, one, two){
         divide(first, second);
     }
 }
+
+let display = '';
+
+const screen = document.querySelector('.display');
+const digits = document.querySelectorAll('.digit');
+
+digits.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        display = e.target.innerText;
+        screen.textContent = display;
+    });
+  });
