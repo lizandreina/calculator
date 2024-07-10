@@ -34,147 +34,70 @@ function operate(operator, one, two){
     }
 }
 
-let display = 0;
+let display = [];
+
 const screen = document.querySelector('.display');
+const digits = document.querySelectorAll('.digit');
 
-let clicked = 0;
-let keyboard = document.querySelector('.keyboard');
+digits.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        display.push(e.target.innerText);
+        if (display.length > 8) {
+            digits.disabled = true;
+        }
+        if (logged === 0) {
+            first = display.join('');
+            screen.textContent = first;
+        } else if (logged === 1) {
+            second = display.join('');
+            screen.textContent = second;
+        }
+    });
+  });
 
-keyboard.addEventListener('click', (event) => {
+const clear = document.querySelector('.AC');
+clear.addEventListener('click', () => {
+    first = 0;
+    second = 0;
+    logged = 0;
+    display = [];
+    screen.textContent = 0;
+  });
+
+let logged = 0;
+let operators = document.querySelector('.operators');
+operators.addEventListener('click', (event) => {
     let target = event.target;
 
     switch(target.className) {
-    case 'digit cero':
-        display = 0;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 0;
-        } else if (clicked === 2) {
-            second = 0;
-            clicked = 0;
-        }
-        break;
-    case 'digit one':
-        display = 1;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 1;
-        } else if (clicked === 2) {
-            second = 1;
-            clicked = 0;
-        }
-        break;
-    case 'digit two':
-        display = 2;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 2;
-        } else if (clicked === 2) {
-            second = 2;
-            clicked = 0;
-        }
-        break;
-    case 'digit three':
-        display = 3;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 3;
-        } else if (clicked === 2) {
-            second = 3;
-            clicked = 0;
-        }
-        break;
-    case 'digit four':
-        display = 4;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 4;
-        } else if (clicked === 2) {
-            second = 4;
-            clicked = 0;
-        }
-        break;
-    case 'digit five':
-        display = 5;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 5;
-        } else if (clicked === 2) {
-            second = 5;
-            clicked = 0;
-        }
-        break;
-    case 'digit six':
-        display = 6;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 6;
-        } else if (clicked === 2) {
-            second = 6;
-            clicked = 0;
-        }
-        break;
-    case 'digit seven':
-        display = 7;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 7;
-        } else if (clicked === 2) {
-            second = 7;
-            clicked = 0;
-        }
-        break;
-    case 'digit eight':
-        display = 8;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 8;
-        } else if (clicked === 2) {
-            second = 8;
-            clicked = 0;
-        }
-        break;
-    case 'digit nine':
-        display = 9;
-        screen.textContent = display;
-        clicked++;
-        if (clicked === 1) {
-            first = 9;
-        } else if (clicked === 2) {
-            second = 9;
-            clicked = 0;
-        }
-        break;
-    case 'symbol AC':
-        first = 0;
-        second = 0;
-        display = 0;
-        screen.textContent = display;
-        break;
-    case 'symbol plus':
+    case 'plus':
+        logged++
         operator = 'plus';
+        display = [];
         break;
-    case 'symbol minus':
+    case 'minus':
+        logged++
         operator = 'minus';
+        display = [];
         break;
-    case 'symbol multiply':
+    case 'multiply':
+        logged++
         operator = 'multiply';
+        display = [];
         break;
-    case 'symbol divide':
+    case 'divide':
+        logged++
         operator = 'divide';
-        break;
-    case 'symbol equal':
-        operate(operator, first, second);
-        screen.textContent = display;
+        display = [];
         break;
     }
+});
+
+const assignment = document.querySelector('.equal');
+assignment.addEventListener('click', () => {
+    first = Number(first);
+    second = Number(second);
+    operate(operator, first, second);
+    screen.textContent = display;
+    logged = 0;
 });
