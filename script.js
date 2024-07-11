@@ -133,4 +133,7 @@ assignment.addEventListener('click', () => {
     operate(operator, first, second);
     screen.textContent = display;
     logged = 0;
+    first = 0;
+    second = 0;
+    display = [];
 });
