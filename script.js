@@ -42,6 +42,7 @@ let display = [];
 
 const screen = document.querySelector('.display');
 const digits = document.querySelectorAll('.digit');
+let clickEvent = new Event('click');
 
 digits.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -58,6 +59,9 @@ digits.forEach((button) => {
             second = display.join('');
             screen.textContent = second;
             second = Number(second);
+            if (operator === 'divide' && second === 0) {
+                assignment.dispatchEvent(clickEvent);
+            }
         }
     })
 });
@@ -130,8 +134,12 @@ operators.addEventListener('click', (event) => {
 
 const assignment = document.querySelector('.equal');
 assignment.addEventListener('click', () => {
-    operate(operator, first, second);
-    screen.textContent = display;
+    if (operator === 'divide' && second === 0) {
+        screen.textContent = 'NaN';
+    } else {
+        operate(operator, first, second);
+        screen.textContent = display;
+    }
     logged = 0;
     first = 0;
     second = 0;
