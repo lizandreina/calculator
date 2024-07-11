@@ -53,7 +53,7 @@ digits.forEach((button) => {
             first = display.join('');
             screen.textContent = first;
             first = Number(first);
-            second = 0;
+            second = first;
         } else if (logged === 1) {
             second = display.join('');
             screen.textContent = second;
@@ -84,7 +84,7 @@ operators.addEventListener('click', (event) => {
         operate(operator, first, second);
         screen.textContent = display;
         first = display;
-        second = 0;
+        second = first;
         }
         operator = 'plus';
         display = [];
@@ -96,7 +96,7 @@ operators.addEventListener('click', (event) => {
         operate(operator, first, second);
         screen.textContent = display;
         first = display;
-        second = 0;
+        second = first;
         }
         operator = 'minus';
         display = [];
@@ -108,7 +108,7 @@ operators.addEventListener('click', (event) => {
         operate(operator, first, second);
         screen.textContent = display;
         first = display;
-        second = 0;
+        second = first;
         }
         operator = 'multiply';
         display = [];
@@ -120,7 +120,7 @@ operators.addEventListener('click', (event) => {
         operate(operator, first, second);
         screen.textContent = display;
         first = display;
-        second = 0;
+        second = first;
         }
         operator = 'divide';
         display = [];
