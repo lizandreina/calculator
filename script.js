@@ -1,20 +1,24 @@
 function sum(first, second) {
-    display = first + second;
+    let number = first + second;
+    display = Math.round(number * 10) / 10;
     return display;
 }
 
 function substract(first, second) {
-    display = first - second;
+    let number = first - second;
+    display = Math.round(number * 10) / 10;
     return display;
 }
 
 function multiply(first, second) {
-    display = first * second;
+    let number = first * second;
+    display = Math.round(number * 10) / 10;
     return display;
 }
 
 function divide(first, second) {
-    display = first / second;
+    let number = first / second;
+    display = Math.round(number * 10) / 10;
     return display;
 }
 
