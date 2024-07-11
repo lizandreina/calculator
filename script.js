@@ -42,18 +42,21 @@ const digits = document.querySelectorAll('.digit');
 digits.forEach((button) => {
     button.addEventListener("click", (e) => {
         display.push(e.target.innerText);
-        if (display.length > 8) {
+        if (display.length > 9) {
             digits.disabled = true;
         }
         if (logged === 0) {
             first = display.join('');
             screen.textContent = first;
+            first = Number(first);
+            second = 0;
         } else if (logged === 1) {
             second = display.join('');
             screen.textContent = second;
+            second = Number(second);
         }
-    });
-  });
+    })
+});
 
 const clear = document.querySelector('.AC');
 clear.addEventListener('click', () => {
@@ -71,22 +74,50 @@ operators.addEventListener('click', (event) => {
 
     switch(target.className) {
     case 'plus':
+        if (logged === 0) {
         logged++
+        } else if (logged === 1) {
+        operate(operator, first, second);
+        screen.textContent = display;
+        first = display;
+        second = 0;
+        }
         operator = 'plus';
         display = [];
         break;
     case 'minus':
+        if (logged === 0) {
         logged++
+        } else if (logged === 1) {
+        operate(operator, first, second);
+        screen.textContent = display;
+        first = display;
+        second = 0;
+        }
         operator = 'minus';
         display = [];
         break;
     case 'multiply':
+        if (logged === 0) {
         logged++
+        } else if (logged === 1) {
+        operate(operator, first, second);
+        screen.textContent = display;
+        first = display;
+        second = 0;
+        }
         operator = 'multiply';
         display = [];
         break;
     case 'divide':
+        if (logged === 0) {
         logged++
+        } else if (logged === 1) {
+        operate(operator, first, second);
+        screen.textContent = display;
+        first = display;
+        second = 0;
+        }
         operator = 'divide';
         display = [];
         break;
@@ -95,8 +126,6 @@ operators.addEventListener('click', (event) => {
 
 const assignment = document.querySelector('.equal');
 assignment.addEventListener('click', () => {
-    first = Number(first);
-    second = Number(second);
     operate(operator, first, second);
     screen.textContent = display;
     logged = 0;
