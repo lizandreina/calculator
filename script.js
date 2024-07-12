@@ -167,8 +167,10 @@ assignment.addEventListener('click', () => {
         screen.textContent = result;
     }
     first = result;
+    if (!Number.isInteger(first)) {
+        dot.disabled = true;
+    }
     second = first;
     logged = 0;
     display = [];
-    dot.disabled = false;
 });
