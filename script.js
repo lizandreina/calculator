@@ -40,6 +40,7 @@ function operate(operator, one, two){
 
 let display = [];
 
+const dot = document.querySelector('.dot');
 const screen = document.querySelector('.display');
 const digits = document.querySelectorAll('.digit');
 let clickEvent = new Event('click');
@@ -49,6 +50,9 @@ digits.forEach((button) => {
         display.push(e.target.innerText);
         if (display.length > 9) {
             digits.disabled = true;
+        }
+        if (display.includes('.')) {
+            dot.disabled = true;
         }
         if (logged === 0) {
             first = display.join('');
@@ -68,6 +72,7 @@ digits.forEach((button) => {
 
 const clear = document.querySelector('.AC');
 clear.addEventListener('click', () => {
+    dot.disabled = false;
     first = 0;
     second = 0;
     logged = 0;
@@ -92,6 +97,7 @@ operators.addEventListener('click', (event) => {
         }
         operator = 'plus';
         display = [];
+        dot.disabled = false;
         break;
     case 'minus':
         if (logged === 0) {
@@ -104,6 +110,7 @@ operators.addEventListener('click', (event) => {
         }
         operator = 'minus';
         display = [];
+        dot.disabled = false;
         break;
     case 'multiply':
         if (logged === 0) {
@@ -116,6 +123,7 @@ operators.addEventListener('click', (event) => {
         }
         operator = 'multiply';
         display = [];
+        dot.disabled = false;
         break;
     case 'divide':
         if (logged === 0) {
@@ -128,6 +136,7 @@ operators.addEventListener('click', (event) => {
         }
         operator = 'divide';
         display = [];
+        dot.disabled = false;
         break;
     }
 });
@@ -144,4 +153,5 @@ assignment.addEventListener('click', () => {
     first = 0;
     second = 0;
     display = [];
+    dot.disabled = false;
 });
