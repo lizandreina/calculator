@@ -1,25 +1,27 @@
+let result = 0;
+
 function sum(first, second) {
     let number = first + second;
-    display = Math.round(number * 10) / 10;
-    return display;
+    result = Math.round(number * 10) / 10;
+    return result;
 }
 
 function substract(first, second) {
     let number = first - second;
-    display = Math.round(number * 10) / 10;
-    return display;
+    result = Math.round(number * 10) / 10;
+    return result;
 }
 
 function multiply(first, second) {
     let number = first * second;
-    display = Math.round(number * 10) / 10;
-    return display;
+    result = Math.round(number * 10) / 10;
+    return result;
 }
 
 function divide(first, second) {
     let number = first / second;
-    display = Math.round(number * 10) / 10;
-    return display;
+    result = Math.round(number * 10) / 10;
+    return result;
 }
 
 let first = 0;
@@ -56,13 +58,15 @@ digits.forEach((button) => {
         }
         if (logged === 0) {
             first = display.join('');
-            screen.textContent = first;
             first = Number(first);
             second = first;
+            result = first;
+            screen.textContent = result;
         } else if (logged === 1) {
             second = display.join('');
-            screen.textContent = second;
             second = Number(second);
+            result = second;
+            screen.textContent = result;
             if (operator === 'divide' && second === 0) {
                 assignment.dispatchEvent(clickEvent);
             }
@@ -77,8 +81,21 @@ clear.addEventListener('click', () => {
     second = 0;
     logged = 0;
     display = [];
+    result = 0;
     screen.textContent = 0;
   });
+
+const sign = document.querySelector('.sign');
+sign.addEventListener('click', () => {
+    result *= -1;
+    screen.textContent = result;
+    if (logged === 0) {
+        first = result;
+        second = first;
+    } else if (logged === 1) {
+        second = result;
+    }
+})
 
 let logged = 0;
 let operators = document.querySelector('.operators');
@@ -91,8 +108,8 @@ operators.addEventListener('click', (event) => {
         logged++
         } else if (logged === 1) {
         operate(operator, first, second);
-        screen.textContent = display;
-        first = display;
+        screen.textContent = result;
+        first = result;
         second = first;
         }
         operator = 'plus';
@@ -104,8 +121,8 @@ operators.addEventListener('click', (event) => {
         logged++
         } else if (logged === 1) {
         operate(operator, first, second);
-        screen.textContent = display;
-        first = display;
+        screen.textContent = result;
+        first = result;
         second = first;
         }
         operator = 'minus';
@@ -117,8 +134,8 @@ operators.addEventListener('click', (event) => {
         logged++
         } else if (logged === 1) {
         operate(operator, first, second);
-        screen.textContent = display;
-        first = display;
+        screen.textContent = result;
+        first = result;
         second = first;
         }
         operator = 'multiply';
@@ -130,8 +147,8 @@ operators.addEventListener('click', (event) => {
         logged++
         } else if (logged === 1) {
         operate(operator, first, second);
-        screen.textContent = display;
-        first = display;
+        screen.textContent = result;
+        first = result;
         second = first;
         }
         operator = 'divide';
@@ -147,11 +164,11 @@ assignment.addEventListener('click', () => {
         screen.textContent = 'NaN';
     } else {
         operate(operator, first, second);
-        screen.textContent = display;
+        screen.textContent = result;
     }
+    first = result;
+    second = first;
     logged = 0;
-    first = 0;
-    second = 0;
     display = [];
     dot.disabled = false;
 });
