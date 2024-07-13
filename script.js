@@ -41,6 +41,7 @@ function operate(operator, one, two){
 }
 
 let display = [];
+let logged = 0;
 
 const dot = document.querySelector('.dot');
 const screen = document.querySelector('.display');
@@ -112,8 +113,6 @@ percentage.addEventListener('click', () => {
         second = result;
     }
 })
-
-let logged = 0;
 
 function operateWithSign(e) {
     if (logged === 0) {
