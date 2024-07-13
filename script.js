@@ -58,6 +58,9 @@ digits.forEach((button) => {
         }
         if (logged === 0) {
             first = display.join('');
+            if (display === '.') {
+                first = 0.;
+            }
             first = Number(first);
             second = first;
             result = first;
@@ -88,6 +91,18 @@ clear.addEventListener('click', () => {
 const sign = document.querySelector('.sign');
 sign.addEventListener('click', () => {
     result *= -1;
+    screen.textContent = result;
+    if (logged === 0) {
+        first = result;
+        second = first;
+    } else if (logged === 1) {
+        second = result;
+    }
+})
+
+const percentage = document.querySelector('.percentage');
+percentage.addEventListener('click', () => {
+    result *= 0.01;
     screen.textContent = result;
     if (logged === 0) {
         first = result;
