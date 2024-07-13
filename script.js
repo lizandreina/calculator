@@ -113,65 +113,32 @@ percentage.addEventListener('click', () => {
 })
 
 let logged = 0;
-let operators = document.querySelector('.operators');
-operators.addEventListener('click', (event) => {
-    let target = event.target;
 
-    switch(target.className) {
-    case 'plus':
-        if (logged === 0) {
+function operateWithSign(e) {
+    if (logged === 0) {
         logged++
-        } else if (logged === 1) {
-        operate(operator, first, second);
-        screen.textContent = result;
-        first = result;
-        second = first;
-        }
-        operator = 'plus';
-        display = [];
-        dot.disabled = false;
-        break;
-    case 'minus':
-        if (logged === 0) {
-        logged++
-        } else if (logged === 1) {
-        operate(operator, first, second);
-        screen.textContent = result;
-        first = result;
-        second = first;
-        }
-        operator = 'minus';
-        display = [];
-        dot.disabled = false;
-        break;
-    case 'multiply':
-        if (logged === 0) {
-        logged++
-        } else if (logged === 1) {
-        operate(operator, first, second);
-        screen.textContent = result;
-        first = result;
-        second = first;
-        }
-        operator = 'multiply';
-        display = [];
-        dot.disabled = false;
-        break;
-    case 'divide':
-        if (logged === 0) {
-        logged++
-        } else if (logged === 1) {
-        operate(operator, first, second);
-        screen.textContent = result;
-        first = result;
-        second = first;
-        }
-        operator = 'divide';
-        display = [];
-        dot.disabled = false;
-        break;
+    } else if (logged === 1) {
+    operate(operator, first, second);
+    screen.textContent = result;
+    first = result;
+    second = first;
     }
-});
+    operator = e.target.className;
+    display = [];
+    dot.disabled = false;
+}
+
+let plus = document.querySelector('.plus');
+plus.addEventListener('click', operateWithSign);
+
+let minus = document.querySelector('.minus');
+minus.addEventListener('click', operateWithSign);
+
+let multi = document.querySelector('.multiply');
+multi.addEventListener('click', operateWithSign);
+
+let div = document.querySelector('.divide');
+div.addEventListener('click', operateWithSign);
 
 const assignment = document.querySelector('.equal');
 assignment.addEventListener('click', () => {
