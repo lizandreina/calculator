@@ -50,7 +50,7 @@ let clickEvent = new Event('click');
 
 digits.forEach((button) => {
     button.addEventListener("click", (e) => {
-        if (display.length > 7) {
+        if (display.length > 5) {
             digits.disabled = true;
         } else {
             display.push(e.target.innerText);
