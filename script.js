@@ -54,22 +54,31 @@ digits.forEach((button) => {
             digits.disabled = true;
         } else {
             display.push(e.target.innerText);
+            if (display[0] === '.') {
+                display[0] = '0';
+                display.push('.');
+            }
         }
         if (display.includes('.')) {
             dot.disabled = true;
         }
         if (logged === 0) {
             first = display.join('');
-            if (display === '.') {
-                first = 0.;
+            if (first === '0.') {
+                first = '0.';
+            } else {
+                first = Number(first);
             }
-            first = Number(first);
             second = first;
             result = first;
             screen.textContent = result;
         } else if (logged === 1) {
             second = display.join('');
-            second = Number(second);
+            if (second === '0.') {
+                second = '0.';
+            } else {
+                second = Number(second);
+            }
             result = second;
             screen.textContent = result;
             if (operator === 'divide' && second === 0) {
